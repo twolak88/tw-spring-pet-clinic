@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>twolak.springframework</groupId>
 	<artifactId>tw-spring-pet-clinic</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>tw-spring-pet-clinic</name>
 	<description>Simple spring application</description>
 	<packaging>pom</packaging>
@@ -45,6 +45,6 @@
 	</build>
 	<scm>
         <developerConnection>scm:git:https://github.com/twolak88/tw-spring-pet-clinic.git</developerConnection>
-      	<tag>tw-spring-pet-clinic-0.0.1</tag>
+      	<tag>HEAD</tag>
   </scm>
 </project>
