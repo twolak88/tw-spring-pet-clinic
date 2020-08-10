@@ -4,7 +4,7 @@ package twolak.springframework.twspringpetclinic.model;
  * @author twolak
  *
  */
-public class PetType {
+public class PetType extends BaseEntity {
     
     private String name;
 
