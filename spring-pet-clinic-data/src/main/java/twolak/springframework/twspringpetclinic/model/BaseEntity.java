@@ -2,6 +2,10 @@ package twolak.springframework.twspringpetclinic.model;
 
 import java.io.Serializable;
 
+/**
+ * @author twolak
+ *
+ */
 public class BaseEntity implements Serializable {
     
     private Long id;
