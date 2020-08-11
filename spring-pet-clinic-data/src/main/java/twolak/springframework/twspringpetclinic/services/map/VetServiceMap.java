@@ -5,6 +5,10 @@ import java.util.Set;
 import twolak.springframework.twspringpetclinic.model.Vet;
 import twolak.springframework.twspringpetclinic.services.CrudService;
 
+/**
+ * @author twolak
+ *
+ */
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
     
     @Override

@@ -5,6 +5,10 @@ import java.util.Set;
 import twolak.springframework.twspringpetclinic.model.Owner;
 import twolak.springframework.twspringpetclinic.services.OwnerService;
 
+/**
+ * @author twolak
+ *
+ */
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     
     @Override
