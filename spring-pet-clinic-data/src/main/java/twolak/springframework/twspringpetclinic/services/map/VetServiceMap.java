@@ -3,13 +3,13 @@ package twolak.springframework.twspringpetclinic.services.map;
 import java.util.Set;
 
 import twolak.springframework.twspringpetclinic.model.Vet;
-import twolak.springframework.twspringpetclinic.services.CrudService;
+import twolak.springframework.twspringpetclinic.services.VetService;
 
 /**
  * @author twolak
  *
  */
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     
     @Override
     public Set<Vet> findAll() {
