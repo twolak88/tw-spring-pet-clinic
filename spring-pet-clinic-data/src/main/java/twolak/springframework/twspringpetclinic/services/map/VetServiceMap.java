@@ -2,6 +2,8 @@ package twolak.springframework.twspringpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import twolak.springframework.twspringpetclinic.model.Vet;
 import twolak.springframework.twspringpetclinic.services.VetService;
 
@@ -9,6 +11,7 @@ import twolak.springframework.twspringpetclinic.services.VetService;
  * @author twolak
  *
  */
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     
     @Override

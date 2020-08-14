@@ -2,6 +2,8 @@ package twolak.springframework.twspringpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import twolak.springframework.twspringpetclinic.model.Owner;
 import twolak.springframework.twspringpetclinic.services.OwnerService;
 
@@ -9,6 +11,7 @@ import twolak.springframework.twspringpetclinic.services.OwnerService;
  * @author twolak
  *
  */
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     
     @Override
