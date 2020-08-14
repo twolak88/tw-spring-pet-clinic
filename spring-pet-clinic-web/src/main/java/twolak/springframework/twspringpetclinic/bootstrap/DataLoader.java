@@ -7,8 +7,6 @@ import twolak.springframework.twspringpetclinic.model.Owner;
 import twolak.springframework.twspringpetclinic.model.Vet;
 import twolak.springframework.twspringpetclinic.services.OwnerService;
 import twolak.springframework.twspringpetclinic.services.VetService;
-import twolak.springframework.twspringpetclinic.services.map.OwnerServiceMap;
-import twolak.springframework.twspringpetclinic.services.map.VetServiceMap;
 
 /**
  * @author twolak
