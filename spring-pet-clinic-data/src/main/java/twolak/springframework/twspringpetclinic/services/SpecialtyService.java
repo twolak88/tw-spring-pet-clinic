@@ -6,6 +6,6 @@ import twolak.springframework.twspringpetclinic.model.Specialty;
  * @author twolak
  *
  */
-public interface SpecialtiesService extends CrudService<Specialty, Long> {
+public interface SpecialtyService extends CrudService<Specialty, Long> {
 
 }

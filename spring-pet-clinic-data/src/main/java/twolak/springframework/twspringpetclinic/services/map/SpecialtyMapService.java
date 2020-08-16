@@ -5,14 +5,14 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import twolak.springframework.twspringpetclinic.model.Specialty;
-import twolak.springframework.twspringpetclinic.services.SpecialtiesService;
+import twolak.springframework.twspringpetclinic.services.SpecialtyService;
 
 /**
  * @author twolak
  *
  */
 @Service
-public class SpecialtiesMapService extends AbstractMapService<Specialty, Long> implements SpecialtiesService{
+public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService{
 
     @Override
     public Specialty findById(Long id) {
