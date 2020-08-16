@@ -14,7 +14,6 @@ import twolak.springframework.twspringpetclinic.services.VetService;
  * @author twolak
  *
  */
-@RequestMapping("/vets")
 @Controller
 public class VetController {
     
@@ -24,7 +23,7 @@ public class VetController {
 	this.vetService = vetService;
     }
 
-    @GetMapping({"", "/index", "/index.html"})
+    @GetMapping({"", "/vets/index", "/vets/index.html", "/vets.html"})
     public String listVets(Model model) {
 	
 	model.addAttribute("vets", vetService.findAll());
