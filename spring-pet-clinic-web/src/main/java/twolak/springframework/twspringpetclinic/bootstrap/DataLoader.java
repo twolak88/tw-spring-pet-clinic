@@ -117,7 +117,7 @@ public class DataLoader implements CommandLineRunner {
     private Specialty createSpecialty(String name) {
 	Specialty specialty = new Specialty();
 	specialty.setDescription(name);
-	return specialty;
+	return specialtyService.save(specialty);
     }
 
     private Owner createOwner(String firstName, String lastName, String address, String city, String phone) {
