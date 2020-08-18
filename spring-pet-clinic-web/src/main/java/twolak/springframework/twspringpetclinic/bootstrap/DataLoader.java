@@ -40,9 +40,9 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 	
-	if (petTypeService.findAll().isEmpty()) {
-	    loadData();
-	}
+		if (petTypeService.findAll().isEmpty()) {
+		    loadData();
+		}
     }
 
     private void loadData() {
