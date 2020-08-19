@@ -16,18 +16,18 @@ import twolak.springframework.twspringpetclinic.services.VetService;
  */
 @Controller
 public class VetController {
-    
-    private final VetService vetService;
-    
-    public VetController(VetService vetService) {
-	this.vetService = vetService;
-    }
 
-    @GetMapping({"", "/vets/index", "/vets/index.html", "/vets.html"})
-    public String listVets(Model model) {
-	
-	model.addAttribute("vets", vetService.findAll());
-	
-	return "vets/index";
-    }
+	private final VetService vetService;
+
+	public VetController(VetService vetService) {
+		this.vetService = vetService;
+	}
+
+	@GetMapping({ "", "/vets/index", "/vets/index.html", "/vets.html" })
+	public String listVets(Model model) {
+
+		model.addAttribute("vets", vetService.findAll());
+
+		return "vets/index";
+	}
 }

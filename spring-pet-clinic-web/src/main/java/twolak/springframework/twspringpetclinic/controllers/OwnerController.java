@@ -15,23 +15,23 @@ import twolak.springframework.twspringpetclinic.services.OwnerService;
 @Controller
 public class OwnerController {
 
-    private final OwnerService ownerService;
+	private final OwnerService ownerService;
 
-    public OwnerController(OwnerService ownerService) {
-	this.ownerService = ownerService;
-    }
+	public OwnerController(OwnerService ownerService) {
+		this.ownerService = ownerService;
+	}
 
-    @GetMapping({ "", "index", "index.html" })
-    public String listOwners(Model model) {
+	@GetMapping({ "", "index", "index.html" })
+	public String listOwners(Model model) {
 
-	model.addAttribute("owners", ownerService.findAll());
+		model.addAttribute("owners", ownerService.findAll());
 
-	return "owners/index";
-    }
-    
-    @GetMapping("/find")
-    public String findOwners() {
-	return "notImplemented";
-    }
+		return "owners/index";
+	}
+
+	@GetMapping("/find")
+	public String findOwners() {
+		return "notImplemented";
+	}
 
 }
