@@ -2,6 +2,7 @@ package twolak.springframework.twspringpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import twolak.springframework.twspringpetclinic.model.Specialty;
@@ -14,6 +15,7 @@ import twolak.springframework.twspringpetclinic.services.VetService;
  *
  */
 @Service
+@Profile({"default", "mapbased"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
 	private final SpecialtyService specialtyService;

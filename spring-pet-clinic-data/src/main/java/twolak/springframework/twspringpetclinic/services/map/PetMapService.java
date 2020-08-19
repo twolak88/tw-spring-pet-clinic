@@ -2,6 +2,7 @@ package twolak.springframework.twspringpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import twolak.springframework.twspringpetclinic.model.Pet;
@@ -12,6 +13,7 @@ import twolak.springframework.twspringpetclinic.services.PetService;
  *
  */
 @Service
+@Profile({"default", "mapbased"})
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
 	@Override
