@@ -37,10 +37,10 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 	}
 
 	@Override
-	public Owner save(Owner object) {
-		if (object != null) {
-			if (object.getPets() != null) {
-				object.getPets().forEach(pet -> {
+	public Owner save(Owner owner) {
+		if (owner != null) {
+			if (owner.getPets() != null) {
+				owner.getPets().forEach(pet -> {
 					if (pet.getPetType() != null) {
 						if (pet.getPetType().getId() == null) {
 							pet.setPetType(petTypeService.save(pet.getPetType()));
@@ -55,7 +55,7 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 					}
 				});
 			}
-			return super.save(object);
+			return super.save(owner);
 		} else {
 			return null;
 		}
@@ -68,8 +68,8 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 	}
 
 	@Override
-	public void delete(Owner object) {
-		super.delete(object);
+	public void delete(Owner owner) {
+		super.delete(owner);
 		;
 	}
 
