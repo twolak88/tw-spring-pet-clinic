@@ -46,6 +46,14 @@
 			<optional>true</optional>
 		</dependency>
 		<!-- end of spring boot -->
+		
+		<!-- project lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- end of project lombok -->
 
 		<!-- webjars -->
 		<dependency>
@@ -69,7 +77,7 @@
 		</dependency>
 		<!-- end of webjars -->
 
-		<!-- test -->
+		<!-- testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -81,7 +89,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- end of test -->
+		<!-- end of testing -->
 	</dependencies>
 	<build>
 		<plugins>
