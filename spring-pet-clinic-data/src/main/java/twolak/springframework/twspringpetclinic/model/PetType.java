@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author twolak
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//@ToString(includeFieldNames=false)
 @Builder
 @Entity
 @Table(name = "types")
@@ -25,4 +27,9 @@ public class PetType extends BaseEntity {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
