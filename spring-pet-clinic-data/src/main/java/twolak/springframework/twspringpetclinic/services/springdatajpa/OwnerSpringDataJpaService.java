@@ -62,4 +62,9 @@ public class OwnerSpringDataJpaService implements OwnerService {
 		return this.ownerRepository.findByLastName(lastName);
 	}
 
+	@Override
+	public Set<Owner> findAllByLastNameLike(String lastName) {
+		return this.ownerRepository.findAllByLastNameLike(lastName);
+	}
+
 }

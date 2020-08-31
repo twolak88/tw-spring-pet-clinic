@@ -1,8 +1,10 @@
 package twolak.springframework.twspringpetclinic.controllers;
 
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -15,9 +17,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.hamcrest.Matchers;
-import org.hamcrest.beans.HasProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,33 +63,48 @@ public class OwnerControllerTest {
 	}
 
 	@Test
-	void testListOwners() throws Exception {
-		when(this.ownerService.findAll()).thenReturn(this.owners);
-		
-		this.mockMvc.perform(get("/owners"))
-		.andExpect(status().isOk())
-		.andExpect(status().is2xxSuccessful())
-		.andExpect(view().name("owners/index"))
-		.andExpect(model().attribute("owners", Matchers.hasSize(2)));
-	}
-	
-	@Test
-	void testListOwnersByIndex() throws Exception {
-		when(this.ownerService.findAll()).thenReturn(this.owners);
-		
-		this.mockMvc.perform(get("/owners/index"))
-		.andExpect(status().isOk())
-		.andExpect(view().name("owners/index"))
-		.andExpect(model().attribute("owners", Matchers.hasSize(2)));
-	}
-
-	@Test
 	void testFindOwners() throws Exception {
 		this.mockMvc.perform(get("/owners/find"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("notImplemented"));
+			.andExpect(view().name("owners/findOwners"))
+			.andExpect(model().attributeExists("owner"));
 		
-		verifyNoInteractions(ownerService);
+		verifyNoInteractions(this.ownerService);
+	}
+	
+	@Test
+	void testProcessFindFormReturnMany() throws Exception {
+		when(this.ownerService.findAllByLastNameLike(anyString())).thenReturn(this.owners);
+		
+		this.mockMvc.perform(get("/owners"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("owners/ownersList"))
+			.andExpect(model().attribute("owners", hasSize(2)));
+		verify(this.ownerService, times(1)).findAllByLastNameLike(anyString());
+		verifyNoMoreInteractions(this.ownerService);
+	}
+	
+	@Test
+	void testProcessFindFormReturnOne() throws Exception {
+		when(this.ownerService.findAllByLastNameLike(anyString())).thenReturn(Stream.of(Owner.builder().id(1L).build()).collect(Collectors.toSet()));
+		
+		this.mockMvc.perform(get("/owners"))
+			.andExpect(status().is3xxRedirection())
+			.andExpect(view().name("redirect:/owners/1"));
+		verify(this.ownerService, times(1)).findAllByLastNameLike(anyString());
+		verifyNoMoreInteractions(this.ownerService);
+	}
+	
+	@Test
+	void testProcessFindFormReturnNone() throws Exception {
+		when(this.ownerService.findAllByLastNameLike(anyString())).thenReturn(new HashSet<>());
+		
+		this.mockMvc.perform(get("/owners"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("owners/findOwners"));
+		verify(this.ownerService, times(1)).findAllByLastNameLike(anyString());
+		verifyNoMoreInteractions(this.ownerService);
+		
 	}
 	
 	@Test

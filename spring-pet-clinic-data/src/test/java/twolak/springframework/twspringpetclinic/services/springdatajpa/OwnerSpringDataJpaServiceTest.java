@@ -1,16 +1,23 @@
 package twolak.springframework.twspringpetclinic.services.springdatajpa;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
-import static org.mockito.ArgumentMatchers.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -67,6 +74,7 @@ public class OwnerSpringDataJpaServiceTest {
 		
 		assertNotNull(owner);
 		verify(this.ownerRepository, times(1)).findById(anyLong());
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 	
 	@Test
@@ -77,6 +85,7 @@ public class OwnerSpringDataJpaServiceTest {
 		
 		assertNull(owner);
 		verify(this.ownerRepository, times(1)).findById(anyLong());
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 	
 	@Test
@@ -86,6 +95,7 @@ public class OwnerSpringDataJpaServiceTest {
 		
 		assertNotNull(savedOwner);
 		verify(this.ownerRepository, times(1)).save(any());
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 	
 	@Test
@@ -102,6 +112,7 @@ public class OwnerSpringDataJpaServiceTest {
 		assertNotNull(foundOwners);
 		assertEquals(countOfOwners, foundOwners.size());
 		verify(this.ownerRepository, times(1)).findAll();
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 	
 	@Test
@@ -109,6 +120,7 @@ public class OwnerSpringDataJpaServiceTest {
 		this.ownerSpringDataJpaService.deleteById(OWNER_ID);
 		
 		verify(this.ownerRepository, times(1)).deleteById(anyLong());
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 	
 	@Test
@@ -126,6 +138,20 @@ public class OwnerSpringDataJpaServiceTest {
 		
 		assertEquals(LAST_NAME, owner.getLastName());
 		verify(this.ownerRepository, times(1)).findByLastName(any());
+		verifyNoMoreInteractions(this.ownerRepository);
+	}
+	
+	@Test
+	void testFindAllByLastNameLike() {
+		Set<Owner> owners = Stream.of(Owner.builder().id(1L).firstName(LAST_NAME).build(),
+									Owner.builder().id(2L).firstName(LAST_NAME+1).build()).collect(Collectors.toSet());
+		when(this.ownerRepository.findAllByLastNameLike(anyString())).thenReturn(owners);
+		
+		Set<Owner> ownersReturned = this.ownerSpringDataJpaService.findAllByLastNameLike(LAST_NAME);
+		
+		assertEquals(2, ownersReturned.size());
+		verify(this.ownerRepository, times(1)).findAllByLastNameLike(anyString());
+		verifyNoMoreInteractions(this.ownerRepository);
 	}
 
 }
