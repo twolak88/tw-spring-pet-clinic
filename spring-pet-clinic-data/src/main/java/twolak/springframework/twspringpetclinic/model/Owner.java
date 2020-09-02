@@ -44,7 +44,9 @@ public class Owner extends Person {
 		this.address = address;
 		this.city = city;
 		this.phone = phone;
-		this.pets = pets;
+		if (pets == null || pets.size() > 0) {
+			this.pets = pets;
+		}
 	}
 	
 	public void addPet(Pet pet) {
