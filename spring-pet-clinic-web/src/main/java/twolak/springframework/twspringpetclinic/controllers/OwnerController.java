@@ -75,10 +75,8 @@ public class OwnerController {
 		else if (owners.size() == 1) {
 			return ControllerGlobals.REDIRECT + "/owners/" + owners.iterator().next().getId();
 		}
-		else {
-			model.addAttribute(OWNERS_ATTR_NAME, owners);
-			return VIEWS_OWNERS_LIST;
-		}
+		model.addAttribute(OWNERS_ATTR_NAME, owners);
+		return VIEWS_OWNERS_LIST;
 	}
 	
 	@GetMapping("/new")
