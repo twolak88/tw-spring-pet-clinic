@@ -102,7 +102,7 @@ class VisitControllerTest {
 				.pet(pet).build());
 		this.mockMvc.perform(post(visitsUri)
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				//.param("date", "2018-11-11")
+				.param("date", "2018-11-11")
 				.param("description", SOME_VISIT_DESCRIPTION))
 			.andExpect(status().is3xxRedirection())
 			.andExpect(view().name(ControllerGlobals.REDIRECT + "/owners/" + ownerId))
