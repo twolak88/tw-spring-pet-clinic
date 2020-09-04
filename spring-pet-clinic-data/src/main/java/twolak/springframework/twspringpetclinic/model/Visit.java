@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +29,7 @@ import lombok.Setter;
 public class Visit extends BaseEntity {
     
 	@Column(name = "date")
-	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 	
 	@Column(name = "description")

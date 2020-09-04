@@ -1,5 +1,7 @@
 package twolak.springframework.twspringpetclinic.controllers;
 
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -58,6 +60,16 @@ public class PetController {
 	public void initOwnerBinder(WebDataBinder webDataBinder) {
 		webDataBinder.setDisallowedFields("id");
 	}
+	
+//	@InitBinder(PET_ATTR_NAME)
+//	public void initPetBinder(WebDataBinder webDataBinder) {
+//		webDataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+//			@Override
+//			public void setAsText(String text) throws IllegalArgumentException {
+//				setValue(LocalDate.parse(text));
+//			}
+//		});
+//	}
 	
 	@GetMapping("/new")
 	public String initCreationForm(Owner owner, Model model) {
